@@ -1,26 +1,26 @@
 version: "3.8"
 services:
-    # frontend:
-    #     container_name: frontend
-    #     build: ./frontend
-    #     tty: true
-    #     ports:
-    #         - "3000:3000"
-    #     depends_on:
-    #         - backend
-    #     volumes:
-    #         - type: bind
-    #           source: ./frontend/src
-    #           target: /src/app
-    #         - type: volume
-    #           # 名前付きボリュームにすることでホストマシンと同期させない
-    #           source: node_modules
-    #           target: /src/app/node_modules
-    #     command: "npm run dev"
-    #     networks:
-    #         - frontend_network
-    #     environment:
-    #         - WATCHPACK_POLLING=true
+    frontend:
+        container_name: frontend
+        build: ./frontend
+        tty: true
+        ports:
+            - "3000:3000"
+        depends_on:
+            - backend
+        volumes:
+            - type: bind
+              source: ./frontend/app
+              target: /src/app
+            - type: volume
+              # 名前付きボリュームにすることでホストマシンと同期させない
+              source: node_modules
+              target: /src/app/node_modules
+        command: "npm start"
+        networks:
+            - frontend_network
+        environment:
+            - WATCHPACK_POLLING=true
     backend:
         container_name: backend
         build: ./backend
@@ -55,10 +55,10 @@ services:
 
 volumes:
     db_volume:
-    # node_modules:
+    node_modules:
 
 networks:
-    # frontend_network:
-    #     external: true
+    frontend_network:
+        external: true
     backend_network:
         external: true
