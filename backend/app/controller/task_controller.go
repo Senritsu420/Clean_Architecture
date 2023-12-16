@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/golang-jwt/jwt/v4"
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/labstack/echo/v4"
 )
 
@@ -66,7 +66,7 @@ func (tc *taskController) CreateTask(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
-	return c.JSON(http.StatusOK, taskRes)
+	return c.JSON(http.StatusCreated, taskRes)
 }
 
 func (tc *taskController) UpdateTask(c echo.Context) error {
