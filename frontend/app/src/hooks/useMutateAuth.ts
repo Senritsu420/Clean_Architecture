@@ -3,6 +3,7 @@ import useStore from "../store"
 import { useError } from "./useError"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
+import { Credential } from "../types"
 
 export  const useMutateAuth = () => {
   const navigate = useNavigate()
@@ -38,7 +39,7 @@ export  const useMutateAuth = () => {
   )
 
   const logoutMutation = useMutation(
-    async (user: Credential) => await axios.post(`${process.env.REACT_APP_API_URL}/logout`,user), {
+    async () => await axios.post(`${process.env.REACT_APP_API_URL}/logout`), {
       onSuccess: () => {
         resetEditedTask()
         navigate('')
